@@ -167,3 +167,13 @@ function calculatePrice(event) {
 for (const h3 of allH3) {
   h3.addEventListener("click", calculatePrice);
 }
+
+const thatP = document.querySelector("div p");
+console.log("thatP:", thatP);
+
+thatP.addEventListener("click", function () {
+  thatP.classList.toggle("your-class");
+  console.log(thatP.classList.contains("your-class"));
+});
+
+thatP.classList.add("having-a-chandelier");
