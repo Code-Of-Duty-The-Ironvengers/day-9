@@ -26,8 +26,6 @@ function getAllElementsByCssSelectors(query) {
 
 const h1 = getFirstElementByCssSelector("h1");
 
-console.log("h1:", h1);
-
 const span = document.querySelector("span");
 const button = document.querySelector("button");
 
@@ -122,6 +120,5 @@ input.addEventListener("keydown", function (event) {
 });
 
 // input.addEventListener("input", function (event) {
-
 //   console.log("event:", event.target.value);
 // });
