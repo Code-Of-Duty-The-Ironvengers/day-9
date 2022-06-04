@@ -92,8 +92,17 @@ function makeRandomRgb() {
   return `rgb(${red}, ${green}, ${blue})`;
 }
 
+function removeLi(event) {
+  const currentElement = event.currentTarget;
+  const parentElement = currentElement.parentElement;
+
+  currentElement.remove();
+  //   parentElement.removeChild(currentElement);
+}
+
 for (const li of allListItems) {
   li.style.color = makeRandomRgb();
+  li.addEventListener("click", removeLi);
 }
 
 // event
@@ -103,6 +112,7 @@ for (const li of allListItems) {
 const input = document.querySelector("input");
 
 input.addEventListener("keydown", function (event) {
+  console.log("event:", event.currentTarget);
   if (event.key === "Enter") {
     // capture what the user wrote in the input
     // create a list item to add to the ul
@@ -114,6 +124,7 @@ input.addEventListener("keydown", function (event) {
     const newLi = document.createElement("li");
     newLi.innerText = inputValue;
     newLi.style.color = makeRandomRgb();
+    newLi.addEventListener("click", removeLi);
     specialUl.appendChild(newLi);
     event.target.value = "";
   }
@@ -122,3 +133,37 @@ input.addEventListener("keydown", function (event) {
 // input.addEventListener("input", function (event) {
 //   console.log("event:", event.target.value);
 // });
+
+const fruitDatabase = [
+  {
+    name: "Banana",
+    price: 4,
+  },
+  {
+    name: "Avocado",
+    price: 18,
+  },
+  {
+    name: "Apple",
+    price: 1000,
+  },
+  {
+    name: "Strawberry",
+    price: 7,
+  },
+];
+
+const allH3 = document.querySelectorAll("h3");
+
+function calculatePrice(event) {
+  const textInsideElement = event.currentTarget.innerText;
+
+  const theFruitThatWasClicked = fruitDatabase.find(function (fruitElement) {
+    return fruitElement.name === textInsideElement;
+  });
+  event.currentTarget.innerHTML = `${theFruitThatWasClicked.name}: <span>€${theFruitThatWasClicked.price}</span>`;
+}
+
+for (const h3 of allH3) {
+  h3.addEventListener("click", calculatePrice);
+}
